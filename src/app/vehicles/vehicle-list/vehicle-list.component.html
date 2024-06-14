@@ -1,0 +1,28 @@
+<app-header></app-header>
+<!-- <router-outlet></router-outlet> -->
+<div class="row a">
+    <div class="col-sm-12 col-md-10 col-lg-8">
+        <h6 style="color: #162542;">Welcome to Car Rentals!</h6>
+        <p style="text-align: justify; color:#fff">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste reiciendis voluptates repellat officia! Id, tenetur.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let vehicle of vehicles; let i = index">
+            <div class="card">
+                <img [src]="vehicle.imagePath" class="card-img-top" alt="...">
+                <div class="card-body" style="background-color: #162542; color:#fff">
+                    <h5 class="card-title">${{ vehicle.perDay }}/day</h5>
+                    <div class="model-and-button">
+                        <p class="card-text">{{ vehicle.model|uppercase }}</p>
+                        <p class="card-text">{{vehicle.available?'Available':'Unavailable'}}</p>
+                        <!-- <a class="btn" (click)="onClick(i)" type="button">Book Now</a> -->
+                        <button type="button" class="btn" (click)="onClick(vehicle.id)" [disabled]="!vehicle.available">{{vehicle.available?'Book':'Booked'}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

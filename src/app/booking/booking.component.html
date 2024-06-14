@@ -1,0 +1,139 @@
+<app-header></app-header>
+
+<div class="row" style="background-color: #C4CCE8;">
+    <div class="col-sm-12 col-md-10 col-lg-8">
+        <h6 style="color: #162542;;"><b>Welcome back Admin!...</b></h6>
+        <br>
+        <p style="text-align: justify; color:#162542;"><b>Booking Status</b></p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+        <ng-container *ngFor="let vehicle of vehicles; let i = index">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card">
+                    <img [src]="vehicle.imagePath" class="card-img-top" alt="...">
+                    <div class="card-body" style="background-color: #162542; color:#fff">
+                        <h5 class="card-title">${{ vehicle.perDay }}/day</h5>
+                        <div class="model-and-button">
+                            <p class="card-text">{{ vehicle.model }}</p>
+                            <!-- <a class="btn" (click)="onClick(i)" type="button">Book Now</a> -->
+                            <button type="button" class="btn" (click)="onClick(vehicle.id)" [disabled]="!vehicle.available">{{vehicle.available?'Book':'Booked'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    
+    <p-dialog header="Booking Details" [(visible)]="dialog" [style]="{ width: '90%', 'max-width': '500px', 'margin': 'auto' }" #dialogRef>
+        <form #bookingForm="ngForm" (ngSubmit)="onSubmitBookingForm(bookingForm)">
+            <!-- <div class="vehicle-details">
+                <h3>Vehicle Details</h3>
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" ngModel required minlength="1" maxlength="50" class="form-control">
+                    <div *ngIf="bookingForm.controls['id'] && (bookingForm.controls['id'].invalid && (bookingForm.controls['id'].dirty || bookingForm.controls['id'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['id'].errors?.['required']">ID is required.</div>
+                        <div *ngIf="bookingForm.controls['id'].errors?.['minlength']">ID must be at least 1 character long.</div>
+                        <div *ngIf="bookingForm.controls['id'].errors?.['maxlength']">ID cannot be more than 50 characters long.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <input type="text" id="model" name="model" ngModel required minlength="1" maxlength="50" class="form-control">
+                    <div *ngIf="bookingForm.controls['model'] && (bookingForm.controls['model'].invalid && (bookingForm.controls['model'].dirty || bookingForm.controls['model'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['model'].errors?.['required']">Model is required.</div>
+                        <div *ngIf="bookingForm.controls['model'].errors?.['minlength']">Model must be at least 1 character long.</div>
+                        <div *ngIf="bookingForm.controls['model'].errors?.['maxlength']">Model cannot be more than 50 characters long.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="perDay">Per Day Rate:</label>
+                    <input type="number" id="perDay" name="perDay" ngModel required min="0" class="form-control">
+                    <div *ngIf="bookingForm.controls['perDay'] && (bookingForm.controls['perDay'].invalid && (bookingForm.controls['perDay'].dirty || bookingForm.controls['perDay'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['perDay'].errors?.['required']">Per Day Rate is required.</div>
+                        <div *ngIf="bookingForm.controls['perDay'].errors?.['min']">Per Day Rate cannot be negative.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imagePath">Image Path:</label>
+                    <input type="text" id="imagePath" name="imagePath" ngModel required class="form-control">
+                    <div *ngIf="bookingForm.controls['imagePath'] && (bookingForm.controls['imagePath'].invalid && (bookingForm.controls['imagePath'].dirty || bookingForm.controls['imagePath'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['imagePath'].errors?.['required']">Image Path is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="available">Available:</label>
+                    <input type="text" id="available" name="available" ngModel required class="form-control">
+                    <div *ngIf="bookingForm.controls['available'] && (bookingForm.controls['available'].invalid && (bookingForm.controls['available'].dirty || bookingForm.controls['available'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['available'].errors?.['required']">Availability is required.</div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="user-details">
+                <h3>User Details</h3>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" ngModel required minlength="2" maxlength="50" class="form-control">
+                    <div *ngIf="bookingForm.controls['name'] && (bookingForm.controls['name'].invalid && (bookingForm.controls['name'].dirty || bookingForm.controls['name'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['name'].errors?.['required']">Name is required.</div>
+                        <div *ngIf="bookingForm.controls['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+                        <div *ngIf="bookingForm.controls['name'].errors?.['maxlength']">Name cannot be more than 50 characters long.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" ngModel required minlength="5" maxlength="100" class="form-control">
+                    <div *ngIf="bookingForm.controls['address'] && (bookingForm.controls['address'].invalid && (bookingForm.controls['address'].dirty || bookingForm.controls['address'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['address'].errors?.['required']">Address is required.</div>
+                        <div *ngIf="bookingForm.controls['address'].errors?.['minlength']">Address must be at least 5 characters long.</div>
+                        <div *ngIf="bookingForm.controls['address'].errors?.['maxlength']">Address cannot be more than 100 characters long.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" ngModel required email class="form-control">
+                    <div *ngIf="bookingForm.controls['email'] && (bookingForm.controls['email'].invalid && (bookingForm.controls['email'].dirty || bookingForm.controls['email'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['email'].errors?.['required']">Email is required.</div>
+                        <div *ngIf="bookingForm.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" ngModel required minlength="10" maxlength="15" pattern="[0-9]+" class="form-control">
+                    <div *ngIf="bookingForm.controls['phone'] && (bookingForm.controls['phone'].invalid && (bookingForm.controls['phone'].dirty || bookingForm.controls['phone'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['phone'].errors?.['required']">Phone number is required.</div>
+                        <div *ngIf="bookingForm.controls['phone'].errors?.['minlength']">Phone number must be at least 10 digits long.</div>
+                        <div *ngIf="bookingForm.controls['phone'].errors?.['maxlength']">Phone number cannot be more than 15 digits long.</div>
+                        <div *ngIf="bookingForm.controls['phone'].errors?.['pattern']">Please enter a valid phone number.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" ngModel required class="form-control">
+                    <div *ngIf="bookingForm.controls['dob'] && (bookingForm.controls['dob'].invalid && (bookingForm.controls['dob'].dirty || bookingForm.controls['dob'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['dob'].errors?.['required']">Date of Birth is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dl">DL No.:</label>
+                    <input type="text" id="dl" name="dl" ngModel required minlength="5" maxlength="20" class="form-control">
+                    <div *ngIf="bookingForm.controls['dl'] && (bookingForm.controls['dl'].invalid && (bookingForm.controls['dl'].dirty || bookingForm.controls['dl'].touched))" class="text-danger">
+                        <div *ngIf="bookingForm.controls['dl'].errors?.['required']">DL No. is required.</div>
+                        <div *ngIf="bookingForm.controls['dl'].errors?.['minlength']">DL No. must be at least 5 characters long.</div>
+                        <div *ngIf="bookingForm.controls['dl'].errors?.['maxlength']">DL No. cannot be more than 20 characters long.</div>
+                    </div>
+                </div>
+                <!-- <div class="form-check">
+                    <input type="checkbox" id="agree" name="agree" ngModel required class="form-check-input">
+                    <label for="agree" class="form-check-label">I have read all the rules and agreements</label>
+                </div> -->
+            </div>
+            <button type="submit" class="btn mt-3" style="background-color:#162542 ; color:#fff">Book</button>
+        </form>
+    </p-dialog>
+    
+      
+</div>

@@ -1,0 +1,12 @@
+.btn{
+    background-color: #fff;
+    color: #162542;
+}
+.container{
+    margin-top: 0.5rem;
+}
+.row{
+    padding-top: 0.75rem;
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+  }

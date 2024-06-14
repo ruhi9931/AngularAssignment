@@ -1,0 +1,44 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-left img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .nav-right a {
+    margin-left: 10px;
+  }
+  
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: row;
+      text-align: center; 
+    }
+  }
+  .user-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+  
+  .user-item {
+    display: flex;
+  }
+  
+  .user-property {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
