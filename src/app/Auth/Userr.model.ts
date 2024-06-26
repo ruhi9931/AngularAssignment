@@ -6,6 +6,7 @@ export class Userr {
       private _tokenExpirationDate: Date
     ) {}
 
+    //below method will be called to make use of user token.
     get token(){
         if(!this._tokenExpirationDate || new Date() > this._tokenExpirationDate){
             return null;

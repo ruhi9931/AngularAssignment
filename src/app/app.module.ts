@@ -23,8 +23,14 @@ import { AuthService } from './Auth/auth.service';
 import { ManageComponent } from './booking/manage/manage.component';
 import { AuthhComponent } from './authh/authh.component';
 import { AuthInterceptorService } from './Auth/auth-interceptor.service';
-
-
+import { CarouselModule } from 'primeng/carousel';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DobValidator } from './booking/dob.validator';
+import { PaginatorModule } from 'primeng/paginator';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,8 @@ import { AuthInterceptorService } from './Auth/auth-interceptor.service';
     UserComponent,
     ManageComponent,
     AuthhComponent,
-    
+    DobValidator,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,14 +55,20 @@ import { AuthInterceptorService } from './Auth/auth-interceptor.service';
     BrowserAnimationsModule,
     DialogModule,
     ButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule,
+    TableModule,
+    InputTextModule,
+    ConfirmDialogModule,
+    PaginatorModule
   ],
   providers: [VehicleService,AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

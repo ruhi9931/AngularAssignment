@@ -1,15 +1,21 @@
 export class Vehicle{
     public id:number;
-    public model: string;
-    public perDay: number;
     public imagePath: string;
-    public available: boolean;
+    public Name: string;
+    public Category: string;
+    public PlateNumber: string;
+    public perDay: number;
+    public Details: string;
+    public MakeItAvailable: boolean;
 
-    constructor(id:number,model:string,perDay:number,imagePath:string,available:boolean){
+    constructor(id:number,imagePath: string, Name: string, perDay:number,Category: string, PlateNumber: string, Details: string, MakeItAvailable: boolean) {
         this.id=id;
-        this.model = model;
-        this.perDay = perDay;
         this.imagePath = imagePath;
-        this.available=available;
+        this.Name = Name;
+        this.Category = Category;
+        this.PlateNumber = PlateNumber;
+        this.perDay = perDay;
+        this.Details = Details;
+        this.MakeItAvailable = MakeItAvailable; 
     }
 }

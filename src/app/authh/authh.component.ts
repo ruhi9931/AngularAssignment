@@ -10,75 +10,89 @@ import { Router } from '@angular/router';
   styleUrls: ['./authh.component.css']
 })
 export class AuthhComponent {
-  confirmPassword:string='';
-  signupSuccess:boolean = false;
-  error:string='';
-  isLogin:boolean=false;
+
+  //property used to check both the passwords are same.
+  confirmPassword: string = '';
+
+  //to check whether the signup process is done.
+  signupSuccess: boolean = false;
+
+  //it'll check, if any error is occured.
+  error: string = '';
+
+  //it'll check whether the user is in login form.
+  isLogin: boolean = false;
+
   // role:string='';
 
-  constructor(private authService:AuthService, private router:Router){}
-  toggleForm(){
-    this.isLogin=!this.isLogin;
+  constructor(private authService: AuthService, private router: Router) { }
+
+  //the below method is used to toggle between login and signup form.
+  toggleForm() {
+    this.isLogin = !this.isLogin;
   }
-  onSubmitLogin(form:NgForm){
-    if(!form.valid){
+
+  //it'll be called when the user will submit the login form.
+  onSubmitLogin(form: NgForm) {
+    if (!form.valid) {
       return;
     }
-    
+
+    console.log(form);
 
     const email = form.value.email;
     const password = form.value.password;
 
-    if(email==='admin@gmail.com' && password==='0987654321'){
-      this.authService.isAdmin=true;
+    if (email === 'admin@gmail.com' && password === '0987654321') {
+      this.authService.isAdmin = true;
       // localStorage.setItem('admin',JSON.stringify(this.authService.isAdmin));
-    }else{
-      this.authService.isAdmin=false;;
+    } else {
+      this.authService.isAdmin = false;;
     }
 
     let authObs: Observable<AuthResponseData>;
 
- 
-    // authObs = this.authService.signup(email,password);
-    authObs = this.authService.login(email,password);
-    
+
+    authObs = this.authService.login(email, password);
+
 
     authObs.subscribe(
       resData => {
         console.log(resData);
         this.router.navigate(['home']);
       },
-      errorMessage=>{
+      errorMessage => {
         console.log(errorMessage);
-        this.error=errorMessage;
+        this.error = errorMessage;
       }
     )
     form.reset();
   }
 
-  onSubmitSignup(form:NgForm){
-    if(!form.valid){
+  //it'll be called when the user will submit the signup form.
+  onSubmitSignup(form: NgForm) {
+    if (!form.valid) {
       return;
     }
-    
+
     const email = form.value.email;
     const password = form.value.password;
 
     let authObs: Observable<AuthResponseData>;
 
-    authObs = this.authService.signup(email,password);
-    
+    authObs = this.authService.signup(email, password);
+
     authObs.subscribe(
       resData => {
         console.log(resData);
-        this.signupSuccess=true;
-        this.isLogin=true;
+        this.signupSuccess = true;
+        this.isLogin = true;
       },
-      errorMessage=>{
+      errorMessage => {
         console.log(errorMessage);
-        this.error=errorMessage;
+        this.error = errorMessage;
       }
     )
     form.reset();
   }
-  }
+}

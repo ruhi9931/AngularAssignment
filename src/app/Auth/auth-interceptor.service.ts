@@ -4,9 +4,11 @@ import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 
 @Injectable()
-export class AuthInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor {
 
-    constructor(private authService:AuthService){}
+    constructor(private authService: AuthService) { }
+
+    //Sending the valid token with ongoing request.
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return this.authService.user.pipe(
             take(1),
@@ -14,7 +16,7 @@ export class AuthInterceptorService implements HttpInterceptor{
                 if (!user || !user.token) {
                     return next.handle(req);
                 }
-    
+
                 const modifiedReq = req.clone({
                     params: new HttpParams().set('auth', user.token)
                 });
@@ -22,5 +24,4 @@ export class AuthInterceptorService implements HttpInterceptor{
             })
         );
     }
-    
 } 

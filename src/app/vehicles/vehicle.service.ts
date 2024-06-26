@@ -3,144 +3,91 @@ import { Vehicle } from "./vehicle.model";
 
 @Injectable()
 export class VehicleService{
+    
     private vehicles: Vehicle[] = [
         // new Vehicle(
-        //     1,
-        //     'BMW F6',
-        //     500,
+        //     Date.now(), 
         //     'assets/images/p8.png',
+        //     'BMW F6', 
+        //     150, 
+        //     'Cars', 
+        //     'KA 1234',
+        //     'N/A',
         //     true
         // ),
-        // new Vehicle(
-        //     2,
-        //     'Nissan',
-        //     100,
-        //     'assets/images/p10.png',
-        //     true
-        // ),
-        // new Vehicle(
-        //     3,
-        //     'Renault',
-        //     150,
-        //     'assets/images/p10.png',
-        //     true
-        // ),
-        // new Vehicle(
-        //     4,
-        //     'Duster',
-        //     200,
-        //     'assets/images/p8.png',
-        //     true
-        // ),
-        // new Vehicle(
-        //     5,
-        //     'BMW F6',
-        //     500,
-        //     'assets/images/p8.png',
-        //     true
-        // ),
-        // new Vehicle(
-        //     6,
-        //     'Nissan',
-        //     100,
-        //     'assets/images/p10.png',
-        //     true
-        // ),
-        // new Vehicle(
-        //     7,
-        //     'Renault',
-        //     150,
-        //     'assets/images/p10.png',
-        //     false
-        // ),
-        // new Vehicle(
-        //     8,
-        //     'Duster',
-        //     200,
-        //     'assets/images/p8.png',
-        //     false
-        // )
+    // new Vehicle(
+    //          1,
+    //         'assets/images/p10.png',
+    //             'Audi F6',
+    //             100,
+    //             'Cars',
+    //             'MA 1234',
+    //             'N/A',
+    //             true
+    //             ),
+    //             new Vehicle(
+    //                 2,
+    //                 'assets/images/p8.png',
+    //                     'Mercedese',
+    //                     400,
+    //                     'Cars',
+    //                     'UA 3234',
+    //                     'N/A',
+    //                     true
+    //                     ),
+                        
+    //                     new Vehicle(
+    //                     3,
+    //                     'assets/images/p10.png',   
+    //                     'BMW F6',
+    //                     350,
+    //                     'Cars',
+    //                     'BA 9234',
+    //                     'N/A',
+    //                     true
+    //                      ),
+    //                     new Vehicle(
+    //                     4,
+    //                     'assets/images/p8.png', 
+    //                     'BMW F6',
+    //                     150,
+    //                     'Cars',
+    //                     'KA 1234',
+    //                     'N/A',
+    //                     true
+    //                     ),
+    //                     new Vehicle(
+    //                     5,
+    //                     'assets/images/p10.png',
+    //                     'BMW F6',
+    //                     150,
+    //                     'Cars',
+    //                     'KA 1234',
+    //                     'N/A',
+    //                     true
+    //                     ),
+];
+    // getVehicles(){
+    //     return this.vehicles.slice();
+    // }
 
+    // getVehicle(index:number){
+    //     return this.vehicles[index];
+    // }
 
- new Vehicle(
-            0,
-            'BMW F6',
-            500,
-            'assets/images/p8.png',
-            true
-        ),
-        new Vehicle(
-            1,
-            'Nissan',
-            100,
-            'assets/images/p10.png',
-            true
-        ),
-        new Vehicle(
-            2,
-            'Renault',
-            150,
-            'assets/images/p10.png',
-            true
-        ),
-        new Vehicle(
-            3,
-            'Duster',
-            200,
-            'assets/images/p8.png',
-            true
-        ),
-        new Vehicle(
-            4,
-            'BMW F6',
-            500,
-            'assets/images/p8.png',
-            true
-        ),
-        new Vehicle(
-            5,
-            'Nissan',
-            100,
-            'assets/images/p10.png',
-            true
-        ),
-        new Vehicle(
-            6,
-            'Renault',
-            150,
-            'assets/images/p10.png',
-            false
-        ),
-        new Vehicle(
-            7,
-            'Duster',
-            200,
-            'assets/images/p8.png',
-            false
-        )
+    // setVehicles(vehicles: Vehicle[]) {
+    //     this.vehicles = vehicles;
+    // }
 
-    ];
-    getVehicles(){
-        return this.vehicles.slice();
-    }
+    // addVehicle(vehicle: Vehicle) {
+    //     this.vehicles.push(vehicle);
+    // }
 
-    getVehicle(index:number){
-        return this.vehicles[index];
-    }
-
-    setVehicles(vehicles: Vehicle[]) {
-        this.vehicles = vehicles;
-    }
-
-    addVehicle(vehicle: Vehicle) {
-        this.vehicles.push(vehicle);
-    }
-
-    updateVehicle(index: number, newVehicle: Vehicle) {
-        this.vehicles[index] = newVehicle;
-    }
+    // updateVehicle(index: number, newVehicle: Vehicle) {
+    //     this.vehicles[index] = newVehicle;
+    // }
     
-    deleteVehicle(index: number) {
-        this.vehicles.splice(index, 1);
-    }
+    // deleteVehicle(index: number) {
+    //     this.vehicles.splice(index, 1);
+    // }
 }

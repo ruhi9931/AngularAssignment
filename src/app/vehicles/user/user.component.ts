@@ -16,8 +16,10 @@ export class UserComponent implements OnInit {
     this.datastorageService.retrieveUserDetail().subscribe(
       (res: User) => {
         this.user = res;
-        console.log(this.user);
-        
+        console.log(this.user);    
+      },
+      (error)=>{
+        console.log('Error occured: ', error); 
       }
     );
   }

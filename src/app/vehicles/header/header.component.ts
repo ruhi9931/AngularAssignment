@@ -10,9 +10,16 @@ import { AuthService } from 'src/app/Auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  //the below property has been used to display the dialog to get the user details.
   displayUserDialog:boolean=false;
+
+  //this property will ensure that the format of the user will be from the User model.
   user!: User;
-  isAdmin:boolean=true;
+
+  //it'll check who logged in Admin or user.
+  isAdmin:boolean=false;
+  
   constructor(private router:Router, private route:ActivatedRoute,private datastorageService:DataStorageService,private authService:AuthService){}
 
   ngOnInit() {
@@ -20,28 +27,39 @@ export class HeaderComponent {
       (res: User) => {
         this.user = res;
         console.log(this.user);
-        
+      },
+      (error)=>{
+        console.log('Error occured: ', error);
       }
     );
 
-    this.isAdmin=this.authService.isAdmin;
-    // this.authService.autoLogin();
+    const isAdminString = localStorage.getItem('isAdmin');
+    if (isAdminString!== null) {
+      this.isAdmin = JSON.parse(isAdminString);
+    } else {
+      this.isAdmin = false;
+    }
   }
   
+  //it'll be called whenever user will click on the button.
   onClick(){
     // this.router.navigate(['user-detail']);
     this.displayUserDialog=true;
   }
 
+  //it'll be called whenever user will click on the booking button.
   onClickBooking(){
     this.router.navigate(['booking']);
   }
 
+  //it'll be called whenever user will click on the logout button.
   onClickLogout(){
     this.authService.logout();
   }
 
+  //it'll be called whenever user will click on the manage button.
   onClickManage(){
     this.router.navigate(['/manage']);
   }
+
 }

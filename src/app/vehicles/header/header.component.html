@@ -1,12 +1,12 @@
 <nav>
   <div class="nav-left">
-    <img src="assets/images/iconn.jpg" alt="Icon">
-    <a style="color: #162542; margin-right: 0.6rem; text-decoration: underline; cursor: pointer;" *ngIf="isAdmin" (click)="onClickBooking()">Booking</a>
-    <a style="color: #162542; text-decoration: underline; cursor: pointer;" *ngIf="isAdmin" (click)="onClickManage()">Manage</a>
+    <img src="assets/images/icon.png" alt="Icon" class="img" [routerLink]="['/home']">
+    <a class="navFont nav-style" *ngIf="isAdmin" (click)="onClickBooking()"><b>Booking</b></a>
+    <a class="navFont nav-style" *ngIf="isAdmin" (click)="onClickManage()"><b>Manage</b></a>
   </div>
   <div class="nav-right">
-      <button type="button" style="background-color: #fff; border:1px solid #fff" (click)="onClickLogout()"><b>Log out</b></button>
-      <a style="color: #162542;"><span class="pi pi-user" (click)="onClick()"></span></a>
+    <button type="button" class="navFont log-out" (click)="onClickLogout()"><b>Log out</b></button>
+    <a class="navFont pii"><span class="pi pi-user" (click)="onClick()"></span></a>
   </div>
 </nav>
 
@@ -14,7 +14,7 @@
 
 
 <p-dialog header="User Detail" [(visible)]="displayUserDialog" [style]="{ 'width': '50%', 'max-width': '600px' }">
-  <div class="user-details" style="color:#162542; padding: 1rem;">
+  <div class="user-details user-form">
     <div class="user-item">
       <div class="user-property">Name:</div>
       <div class="user-value">{{ user.name}}</div>
@@ -43,7 +43,6 @@
     <div class="user-item">
       <div class="user-property">DL No.:</div>
       <div class="user-value">{{ user.dl}}</div>
-    </div> 
+    </div>
   </div>
 </p-dialog>
-

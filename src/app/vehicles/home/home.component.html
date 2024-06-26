@@ -1,56 +1,50 @@
 <app-header></app-header>
 
-<div class="row" style="background-color: #162542;">
-    <div class="col-sm-12 col-md-10 col-lg-8">
-        <h6 style="color: #fff;">Welcome to Rent Wheels!</h6>
+<div class="whole">
+    <div class="row content">
+        <h6 class="heading">Welcome to Rent Wheels!</h6>
         <br>
-        <p style="text-align: justify; color:#fff">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste reiciendis voluptates repellat officia! Id, tenetur.
+        <p [ngClass]="{'expanded': isExpanded}" class="read-more-content">
+            At Rent Wheels, we're passionate about providing you with the freedom to explore the world on your terms.
+            Whether you're planning a road trip, commuting in the city, or simply need a reliable vehicle for your
+            everyday adventures, we've got you covered
+            <span *ngIf="!isExpanded" class="additional-content">
+                ...
+            </span>
+            <span *ngIf="isExpanded" class="additional-content">
+                .
+            </span>
+            <span *ngIf="isExpanded" class="additional-content">
+                Additional hidden content you want to reveal goes here .
+            </span>
+            <a (click)="toggleExpand()" class="read-more">
+                {{ isExpanded ? 'Read Less' : 'Read More' }}
+            </a>
         </p>
     </div>
-  </div>
-  
-  <div class="row">
-    <h6>Categories</h6>
-  </div>
+    <!-- <button (click)="onClickButton()">Click</button> -->
+    <div class="row">
+        <h6>Categories</h6>
+    </div>
 
-  
-  <div class="row">
-    <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card">
-            <br><br>
-            <img src="assets/images/p11.png" class="card-img-top" alt="Image">
-            <br><br>
-            <div class="card-body">
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <br>
-                <a class="btn" (click)="onClick()">Cars</a>      
+    <p-carousel [value]="categories" [numVisible]="3" [numScroll]="3" [circular]="false"
+        [responsiveOptions]="responsiveOptions">
+        <ng-template let-category pTemplate="item">
+            <div class="category-card-custom">
+                <div class="category-card border-1 surface-border border-round m-2 text-center py-3 px-2">
+                    <div class="image-container mb-3">
+                        <img [src]="category.image" [alt]="category.description" class="img-fluid shadow-2" />
+                    </div>
+                    <div>
+                        <h5 class="mb-1">{{ category.description }}</h5>
+                        <div class="category1">
+                            <h6 class="btn mt-0 mb-3" style="cursor:pointer" *ngIf="category.type==='Cars'"
+                                (click)="onClick()"><b>{{ category.type }}</b></h6>
+                            <h6 class="btn mt-0 mb-3" *ngIf="category.type!=='Cars'"><b>{{ category.type }}</b></h6>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- <h4 style="text-align: center; background-color: #162542; height: auto; color: #fff; padding-top: 10px; padding-bottom: 10px;">Cars</h4> -->
-    </div>
-    <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card">
-            <img src="assets/images/p4.png" class="card-img-top" alt="Image">
-            <br><br>
-            <div class="card-body">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a class="btn">Bikes</a>
-            </div>
-            <!-- <h4 style="text-align: center; background-color: #162542; height: auto; color: #fff; padding-top: 10px; padding-bottom: 10px;">Cars</h4> -->
-        </div>
-    </div>
-    <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card">
-            <br>
-            <img src="assets/images/p7.png" class="card-img-top" alt="Image">
-            <div class="card-body">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
-                <p class="card-text" style="padding-bottom: 10px;">With supporting text below as a natural lead-in to additional content.</p>
-                
-                <a class="btn">Buses</a>   
-            </div>
-            <!-- <h4 style="text-align: center; background-color: #162542; height: auto; color: #fff; padding-top: 10px; padding-bottom: 10px; margin-top: 5px;">Cars</h4> -->
-        </div>
-    </div>
+        </ng-template>
+    </p-carousel>
 </div>
